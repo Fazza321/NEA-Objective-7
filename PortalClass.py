@@ -51,29 +51,6 @@ class PortalSprite(pygame.sprite.Sprite):
         self.intersectionLine = line
         self.direction = self.intersectionLine.direction
 
-    def update(self, screen):
-        if not self.x and not self.y:
-            return
-        self.rect.center = (self.x, self.y)
-        animationCooldown = 4
-        self.counter += 1
-        if self.counter == animationCooldown:
-            self.counter, self.index = 0, self.index + 1
-        if self.index == 8:
-            self.index = 0
-        if self.state == "open" and self.index == 7:
-            self.state = "idle"
-        if self.state == "open":
-            self.images = self.openImages
-        elif self.state == "idle":
-            self.images = self.idleImages
-        self.getImage()
-        self.drawPortal(screen)
-
-    def drawPortal(self, screen):
-        screen.blit(self.image, self.rect)
-
-
 portalSprites = pygame.sprite.Group()
 portal = PortalSprite(Colours.blue, 1)
 portal2 = PortalSprite(Colours.orange, 2)
